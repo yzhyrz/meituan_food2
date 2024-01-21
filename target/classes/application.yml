@@ -1,0 +1,39 @@
+server:
+  port: 8080
+spring:
+  application:
+#     应用名称（可选），如果不加，就是项目名
+    name: 点餐
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/mt_food?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 3306
+  mail:
+    username: 2958671279@qq.com
+    password: nrmwmuhhgmnndceb
+    #     授权码
+    host: smtp.qq.com
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+
+mybatis-plus:
+  configuration:
+    # address_book(数据库表名)-->addressBook(类名)
+    # user_name(数据库字段名)-->userName(类属性)
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+shuimen:
+  path: D:\filedata\javaWeb\meituan_food\meituan_food\src\main\resources\img\
+
+logging:
+  level:
+    org.springframework.security: DEBUG
