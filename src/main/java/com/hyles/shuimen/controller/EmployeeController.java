@@ -5,6 +5,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hyles.shuimen.common.R;
 import com.hyles.shuimen.entity.Employee;
 import com.hyles.shuimen.service.EmployeeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +28,19 @@ import java.time.LocalDateTime;
 @Slf4j
 @RestController
 @RequestMapping("/employee")
+@Api(tags = "套餐相关接口")
 public class EmployeeController {
 
     // 自动注入依赖
     @Autowired
     public EmployeeService employeeService;
-
-    @PostMapping("/login")
+//  下面这种复杂的类型（HttpServletRequest），不能使用
+//    @PostMapping("/login")
+//    @ApiOperation(value = "登陆验证接口")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "request",value = "请求",required = true),
+//            @ApiImplicitParam(name = "employee",value = "用户信息",required = true)
+//    })
     public R<Employee> login(HttpServletRequest request, @RequestBody Employee employee){
 
         log.info("开始登录验证");
@@ -61,6 +71,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/logout")
+
     public R<String> logout(HttpServletRequest request){
         request.getSession().removeAttribute("employee");
         return R.success("退出成功");

@@ -49,18 +49,37 @@ public class LoginCheckFilter implements Filter {
                 "/doc.html",
                 "/webjars/**",
                 "/swagger-resources",
-                "/v2/api-docs"
+                "/v2/api-docs",
+
         };
 
         // 判断本次请求是否需要处理
         boolean res = check(urls,requestUri);
 
         // 不需要处理，直接放行
-        if(res){
-            log.info("本次请求 {} 不需要处理",requestUri);
-            filterChain.doFilter(request,response);
-            return;
+//        if(res){
+//            log.info("本次请求 {} 不需要处理",requestUri);
+//            System.out.println(filterChain);
+//            System.out.println(request);
+//            System.out.println(response);
+//            filterChain.doFilter(request,response);
+//            return;
+//        }
+        try {
+            if (res) {
+                log.info("本次请求 {} 不需要处理", requestUri);
+//                System.out.println(filterChain);
+//                System.out.println(request);
+//                System.out.println(response);
+                filterChain.doFilter(request, response);
+                return;
+            }
+        } catch (Exception e) {
+            log.error("执行 doFilter 时发生异常", e);
+            // 处理异常的逻辑，比如输出日志或者抛出新的 ServletException
+            throw new ServletException("执行 doFilter 时发生异常", e);
         }
+
 
         // 判断后台-登录状态，如果已登录，直接放行
         if(request.getSession().getAttribute("employee") != null){

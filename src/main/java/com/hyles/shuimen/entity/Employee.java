@@ -2,17 +2,21 @@ package com.hyles.shuimen.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
+@ApiModel("管理人员")
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @ApiModelProperty("主键")
     private Long id;
 
+    @ApiModelProperty("用户名")
     private String username;
 
     private String name;
