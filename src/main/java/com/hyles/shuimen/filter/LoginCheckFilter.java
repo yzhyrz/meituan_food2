@@ -44,8 +44,12 @@ public class LoginCheckFilter implements Filter {
                 // 这里是为了 后面单独验证这个功能用的，可以删掉
                 "/common/**",// 以common开头（上传和下载请求）
                 "/user/sendMsg", // 移动端发送短信
-                "/user/login" // 移动端-登录
-//
+                "/user/login", // 移动端-登录
+
+                "/doc.html",
+                "/webjars/**",
+                "/swagger-resources",
+                "/v2/api-docs"
         };
 
         // 判断本次请求是否需要处理
